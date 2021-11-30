@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\Toolbar">
+      <UniqueIdentifier>{2a4841bd-e38b-41d6-acec-d658de44a3b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Toolbar">
+      <UniqueIdentifier>{29422e1d-d694-4bb6-905b-96c0ad396a69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SkeletonCanvas">
+      <UniqueIdentifier>{f2074353-7232-4f59-8015-a3f617e44639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\CalotteCanvas">
+      <UniqueIdentifier>{c7ff2360-5c74-4d0d-86b4-8cceeadfb6fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\CalotteCanvas">
+      <UniqueIdentifier>{e7f51dff-8791-41e0-b709-f5d83d672705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SkeletonCanvas">
+      <UniqueIdentifier>{f4839764-a03a-48e5-86df-6c8016c2fbe5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,10 +45,28 @@
     <ClInclude Include="CourseProject-IV.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Toolbar.h">
+      <Filter>Файлы заголовков\Toolbar</Filter>
+    </ClInclude>
+    <ClInclude Include="CalotteCanvas.h">
+      <Filter>Файлы заголовков\CalotteCanvas</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonCanvas.h">
+      <Filter>Файлы заголовков\SkeletonCanvas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CourseProject-IV.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Toolbar.cpp">
+      <Filter>Исходные файлы\Toolbar</Filter>
+    </ClCompile>
+    <ClCompile Include="CalotteCanvas.cpp">
+      <Filter>Исходные файлы\CalotteCanvas</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonCanvas.cpp">
+      <Filter>Исходные файлы\SkeletonCanvas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
