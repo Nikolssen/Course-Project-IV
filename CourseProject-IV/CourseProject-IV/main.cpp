@@ -2,7 +2,7 @@
 //
 
 #include "framework.h"
-#include "CourseProject-IV.h"
+#include "main.h"
 
 #define MAX_LOADSTRING 100
 

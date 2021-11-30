@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CalotteCanvas.h" />
-    <ClInclude Include="CourseProject-IV.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SkeletonCanvas.h" />
@@ -150,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalotteCanvas.cpp" />
-    <ClCompile Include="CourseProject-IV.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="SkeletonCanvas.cpp" />
     <ClCompile Include="Toolbar.cpp" />
     <ClCompile Include="Win32Application.cpp" />
