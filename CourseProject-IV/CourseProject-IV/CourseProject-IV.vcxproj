@@ -146,12 +146,14 @@
     <ClInclude Include="SkeletonCanvas.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Toolbar.h" />
+    <ClInclude Include="Win32Application.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalotteCanvas.cpp" />
     <ClCompile Include="CourseProject-IV.cpp" />
     <ClCompile Include="SkeletonCanvas.cpp" />
     <ClCompile Include="Toolbar.cpp" />
+    <ClCompile Include="Win32Application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CourseProject-IV.rc" />

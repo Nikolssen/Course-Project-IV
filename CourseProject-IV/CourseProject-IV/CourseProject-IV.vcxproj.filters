@@ -54,6 +54,9 @@
     <ClInclude Include="SkeletonCanvas.h">
       <Filter>Файлы заголовков\SkeletonCanvas</Filter>
     </ClInclude>
+    <ClInclude Include="Win32Application.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CourseProject-IV.cpp">
@@ -67,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="SkeletonCanvas.cpp">
       <Filter>Исходные файлы\SkeletonCanvas</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32Application.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
