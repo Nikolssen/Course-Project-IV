@@ -1,5 +1,4 @@
 #include "Toolbar.h"
-#include "math.h"
 
 #define IDT_CARBON                      30017
 #define IDT_NITROGEN                    30018
@@ -42,6 +41,7 @@ void Toolbar::Configure(HWND parent, HINSTANCE hInst) {
 LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	static HWND hTools[12];
 	static HBITMAP hBitmap[12];
+	State* state = Win32Application::Instance()->getSkeletonCanvas()->getState();
 	switch (message)
 	{
 	case WM_CREATE:
@@ -57,6 +57,49 @@ LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 			}
 		}
 		break;
+	case WM_COMMAND:
+	{
+		switch (LOWORD(wParam)) 
+		{
+		case IDT_CARBON:
+			state->setElement(Element::Carbon);
+			break;
+		case IDT_NITROGEN:
+			state->setElement(Element::Nitrogen);
+			break;
+		case IDT_OXYGEN:
+			state->setElement(Element::Oxygen);
+			break;
+		case IDT_SULFUR:
+			state->setElement(Element::Sulfur);
+			break;
+		case IDT_PHOSPHORUS:
+			state->setElement(Element::Phosphorus);
+			break;
+		case IDT_FLUORINE:
+			state->setElement(Element::Fluorine);
+			break;
+		case IDT_CHLORINE:
+			state->setElement(Element::Chlorine);
+			break;
+		case IDT_BROMINE:
+			state->setElement(Element::Bromine);
+			break;
+		case IDT_IODINE:
+			state->setElement(Element::Iodine);
+			break;
+		case IDT_SINGLE:
+			state->setBond(1);
+			break;
+		case IDT_DOUBLE:
+			state->setBond(2);
+			break;
+		case IDT_TRIPLE:
+			state->setBond(3);
+			break;
+		}
+		break;
+	}
 	case WM_DESTROY:
 		for (int i = 0; i < 12; i++)
 		{

@@ -6,11 +6,12 @@
 #include "resource.h"
 
 class SkeletonCanvas;
+class Toolbar;
 class Win32Application
 {
 public:
     static Win32Application* Instance();
-
+    SkeletonCanvas* getSkeletonCanvas() { return skeletonCanvas; }
     int Run(HINSTANCE hInstance, int nCmdShow);
     int SetupToolBar(HWND hwnd);
 

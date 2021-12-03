@@ -31,6 +31,9 @@
     <Filter Include="Файлы заголовков\SkeletonCanvas">
       <UniqueIdentifier>{f4839764-a03a-48e5-86df-6c8016c2fbe5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Structs and Enums">
+      <UniqueIdentifier>{217a0a3e-d2ff-458a-9b5e-3e0e989707bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -57,6 +60,18 @@
     <ClInclude Include="Win32Application.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Element.h">
+      <Filter>Файлы заголовков\Structs and Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Atom.h">
+      <Filter>Файлы заголовков\Structs and Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex2D.h">
+      <Filter>Файлы заголовков\Structs and Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Файлы заголовков\Structs and Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -73,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="Win32Application.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Исходные файлы\SkeletonCanvas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include "resource.h"
+#include "Win32Application.h"
 
 class Toolbar
 {
