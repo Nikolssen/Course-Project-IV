@@ -23,3 +23,7 @@ int Win32Application::Run(HINSTANCE hInstance, int nCmdShow) {
 
 	return skeletonCanvas->RunLoop(hInstance);
 }
+
+int Win32Application::SetupToolBar() {
+
+}

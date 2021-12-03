@@ -13,6 +13,7 @@ public:
     static Win32Application* Instance();
 
     int Run(HINSTANCE hInstance, int nCmdShow);
+    int SetupToolBar();
 
 private:
     Win32Application();
