@@ -3,14 +3,26 @@
 #include "SkeletonCanvas.h"
 #include "Toolbar.h"
 #include "CalotteCanvas.h"
+#include "resource.h"
 
+#define MAX_LOADSTRING 100
+class SkeletonCanvas;
 class Win32Application
 {
 public:
-    static int Run(HINSTANCE hInstance, int nCmdShow);
+    static Win32Application* Instance();
+
+    int Run(HINSTANCE hInstance, int nCmdShow);
+
 private:
-    Toolbar* toolbar;
-    CalotteCanvas* calotteCanvas;
+    Win32Application();
+
+    //Toolbar* toolbar;
+    //CalotteCanvas* calotteCanvas;
+
     SkeletonCanvas* skeletonCanvas;
+
+    WCHAR szTitle[MAX_LOADSTRING];
+    WCHAR szWindowClass[MAX_LOADSTRING];
 };
 

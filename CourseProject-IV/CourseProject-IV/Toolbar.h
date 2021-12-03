@@ -5,10 +5,10 @@ class Toolbar
 {
 public:
 	Toolbar();
-    HWND GetHwnd() { return m_hwnd; }
+    HWND GetWindow() { return window; }
     void Configure();
 private:
-    HWND m_hwnd;
-    LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+    HWND window;
+    static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 

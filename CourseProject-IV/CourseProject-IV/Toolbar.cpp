@@ -1,6 +1,6 @@
 #include "Toolbar.h"
 Toolbar::Toolbar() {
-
+	this->window = nullptr;
 }
 
 void Toolbar::Configure() {
