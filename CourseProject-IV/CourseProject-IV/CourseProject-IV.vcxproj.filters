@@ -105,9 +105,6 @@
     <Image Include="CourseProject-IV.ico">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="bitmap1.bmp">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
     <Image Include="icons\bromine.bmp">
       <Filter>Файлы ресурсов</Filter>
     </Image>

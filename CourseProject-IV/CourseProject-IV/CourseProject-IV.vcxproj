@@ -164,7 +164,6 @@
     <ResourceCompile Include="CourseProject-IV.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="bitmap1.bmp" />
     <Image Include="CourseProject-IV.ico" />
     <Image Include="icons\bromine.bmp" />
     <Image Include="icons\carbon.bmp" />

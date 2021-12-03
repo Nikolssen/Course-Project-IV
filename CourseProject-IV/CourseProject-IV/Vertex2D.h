@@ -8,5 +8,5 @@ struct Vertex2D
     int prevy;
     bool shortRear;
     bool shortFront;
-    Atom element;
+    Atom atom;
 };
