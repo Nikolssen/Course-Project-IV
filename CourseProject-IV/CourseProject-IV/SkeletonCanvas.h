@@ -10,7 +10,6 @@ public:
     HWND GetWindow() { return window; }
     void Configure(HINSTANCE hInstance, WCHAR* windowClass, WCHAR* title);
     void MakeVisible(int nCmdShow);
-    int RunLoop(HINSTANCE hInstance);
 private:
     HWND window;
     static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

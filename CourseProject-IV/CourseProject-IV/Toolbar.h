@@ -1,14 +1,16 @@
 #pragma once
 #include <Windows.h>
+#include "resource.h"
 
 class Toolbar
 {
 public:
 	Toolbar();
     HWND GetWindow() { return window; }
-    void Configure();
+    void Configure(HWND parent, HINSTANCE hInst);
 private:
     HWND window;
-    static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+    LPCWSTR szToolsDialogClass = L"Tools Dialog";
+    static LRESULT CALLBACK ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 

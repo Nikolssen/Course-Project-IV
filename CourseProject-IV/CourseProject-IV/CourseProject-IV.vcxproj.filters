@@ -87,5 +87,47 @@
     <Image Include="CourseProject-IV.ico">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="bitmap1.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\bromine.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\carbon.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\chlorine.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\double.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\eraser.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\fluorine.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\iodine.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\nitrogen.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\oxygen.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\phosphorus.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\single.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\sulfur.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons\triple.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>

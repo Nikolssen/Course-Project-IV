@@ -5,7 +5,6 @@
 #include "CalotteCanvas.h"
 #include "resource.h"
 
-#define MAX_LOADSTRING 100
 class SkeletonCanvas;
 class Win32Application
 {
@@ -13,16 +12,17 @@ public:
     static Win32Application* Instance();
 
     int Run(HINSTANCE hInstance, int nCmdShow);
-    int SetupToolBar();
+    int SetupToolBar(HWND hwnd);
 
 private:
     Win32Application();
 
-    //Toolbar* toolbar;
+    Toolbar* toolbar;
     //CalotteCanvas* calotteCanvas;
 
     SkeletonCanvas* skeletonCanvas;
 
+    HINSTANCE hInst;
     WCHAR szTitle[MAX_LOADSTRING];
     WCHAR szWindowClass[MAX_LOADSTRING];
 };

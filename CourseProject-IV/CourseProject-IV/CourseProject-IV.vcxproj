@@ -159,7 +159,21 @@
     <ResourceCompile Include="CourseProject-IV.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="bitmap1.bmp" />
     <Image Include="CourseProject-IV.ico" />
+    <Image Include="icons\bromine.bmp" />
+    <Image Include="icons\carbon.bmp" />
+    <Image Include="icons\chlorine.bmp" />
+    <Image Include="icons\double.bmp" />
+    <Image Include="icons\eraser.bmp" />
+    <Image Include="icons\fluorine.bmp" />
+    <Image Include="icons\iodine.bmp" />
+    <Image Include="icons\nitrogen.bmp" />
+    <Image Include="icons\oxygen.bmp" />
+    <Image Include="icons\phosphorus.bmp" />
+    <Image Include="icons\single.bmp" />
+    <Image Include="icons\sulfur.bmp" />
+    <Image Include="icons\triple.bmp" />
     <Image Include="small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
