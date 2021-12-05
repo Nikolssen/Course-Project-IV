@@ -72,6 +72,18 @@
     <ClInclude Include="State.h">
       <Filter>Файлы заголовков\Structs and Enums</Filter>
     </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Файлы заголовков\Structs and Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex3D.h">
+      <Filter>Файлы заголовков\Structs and Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Converter.h">
+      <Filter>Файлы заголовков\CalotteCanvas</Filter>
+    </ClInclude>
+    <ClInclude Include="ConverterNode.h">
+      <Filter>Файлы заголовков\Structs and Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -86,11 +98,14 @@
     <ClCompile Include="SkeletonCanvas.cpp">
       <Filter>Исходные файлы\SkeletonCanvas</Filter>
     </ClCompile>
-    <ClCompile Include="Win32Application.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>Исходные файлы\SkeletonCanvas</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32Application.cpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="Converter.cpp">
+      <Filter>Исходные файлы\CalotteCanvas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
