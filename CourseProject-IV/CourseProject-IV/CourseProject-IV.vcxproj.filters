@@ -84,6 +84,9 @@
     <ClInclude Include="ConverterNode.h">
       <Filter>Файлы заголовков\Structs and Enums</Filter>
     </ClInclude>
+    <ClInclude Include="AtomColor.h">
+      <Filter>Файлы заголовков\Structs and Enums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

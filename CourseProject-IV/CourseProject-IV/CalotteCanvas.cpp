@@ -18,29 +18,50 @@ void CalotteCanvas::Configure(HWND parent, HINSTANCE hInst) {
 	wc.lpszClassName = szCanvasClass;
 	RegisterClass(&wc);
 	
-	this->window = CreateWindowW(szCanvasClass, L"CalotteCanvas", WS_VISIBLE , 665, 0, 615, 720, parent, nullptr, hInst, nullptr);
+	this->window = CreateWindowW(szCanvasClass, L"CalotteCanvas", WS_VISIBLE | WS_CHILD , 665, 0, 615, 720, parent, nullptr, hInst, nullptr);
 	this->SetupContext();
 	this->InitGL();
 }
 
 void CalotteCanvas::InitGL() {
-
-	glShadeModel(GL_SMOOTH);                            // Enable Smooth Shading
-	glClearColor(0.0f, 0.0f, 0.0f, 0.5f);               // Black Background
-	glClearDepth(1.0f);                                 // Depth Buffer Setup
-	glEnable(GL_DEPTH_TEST);                            // Enables Depth Testing
-	glDepthFunc(GL_LEQUAL);                             // The Type Of Depth Testing To Do
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black Background
+	glClearDepth(1.0f);	// Depth Buffer Setup
+	glEnable(GL_DEPTH_TEST); // Enables Depth Testing
+	glDepthFunc(GL_LEQUAL); // The Type Of Depth Testing To Do
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-	glViewport(0, 0, 615, 720);                       // Reset The Current Viewport
+	glEnable(GL_COLOR_MATERIAL);
 
-	glMatrixMode(GL_PROJECTION);                        // Select The Projection Matrix
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+
+	glEnable(GL_LIGHT0);
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHTING);
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
+	glViewport(0, 0, 615, 720);
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	glMatrixMode(GL_MODELVIEW);                         // Select The Modelview Matrix
-
+	float ratio_w_h = 1;
+	gluPerspective(45 /*view angle*/, ratio_w_h, 0.1 /*clip close*/, 200 /*clip far*/);
+	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 }
 
 void CalotteCanvas::SetupContext() {
@@ -107,7 +128,77 @@ void CalotteCanvas::Rotate(int x, int y, int z) {
 void CalotteCanvas::Render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear Screen And Depth Buffer
 	glLoadIdentity();
+	while (reusableQuadrics.size() < vertices3D.size())
+	{
+		GLUquadricObj* quad = gluNewQuadric();
+		reusableQuadrics.push_back(quad);
+	}
+
+	for (unsigned int i = 0; i < vertices3D.size(); i++)
+		Sphere(vertices3D.at(i), i);
+
+
+	glFlush();
+	SwapBuffers(hDC);
 }
+
+void CalotteCanvas::Sphere(Vertex3D& vertex, int pos)
+{
+
+	AtomColor color;
+	float radius;
+
+	switch (vertex.element)
+	{
+	case Element::Carbon:
+		color = { 0.57, 0.57, 0.57 };
+		radius = 1.12;
+		break;
+	case Element::Oxygen:
+		color = { 0.96, 0.07, 0.01 };
+		radius = 1;
+		break;
+	case Element::Nitrogen:
+		color = { 0.2, 0.33, 0.9255 };
+		radius = 1.02;
+		break;
+	case Element::Phosphorus:
+		color = { 0.98, 0.5, 0.02 };
+		radius = 1.18;
+		break;
+	case Element::Sulfur:
+		color = { 1, 0.98, 0.267 };
+		radius = 1.18;
+		break;
+	case Element::Chlorine:
+		color = { 0.094, 0.964, 0.09 };
+		radius = 1.15;
+		break;
+	case Element::Fluorine:
+		color = { 0.54, 0.89, 0.325 };
+		radius = 0.97;
+		break;
+	case Element::Bromine:
+		color = { 0.65, 0.16, 0.15 };
+		radius = 1.22;
+		break;
+	case Element::Iodine:
+		color = { 0.58, 0, 0.58 };
+		radius = 1.3;
+		break;
+	default:
+		color = { 1,1,1 };
+		radius = 0.79;
+		break;
+	}
+	glPushMatrix();
+	glColor3f(color.red, color.green, color.blue);
+	glTranslatef(vertex.point.x, vertex.point.y, vertex.point.z - dist);
+	gluSphere(reusableQuadrics[pos], radius, 30, 30);
+	glPopMatrix();
+
+}
+
 LRESULT CALLBACK CalotteCanvas::CanvasProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	auto canvas = Win32Application::Instance()->GetCalotteCanvas();
 	canvas->Render();

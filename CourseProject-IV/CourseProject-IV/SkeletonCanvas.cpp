@@ -288,6 +288,11 @@ void SkeletonCanvas::Paint(HDC dc, PAINTSTRUCT ps) {
     DeleteObject(hFont);
 }
 
+void SkeletonCanvas::Clear() {
+    vertices.clear();
+    RedrawWindow(window, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+}
+
 LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     Win32Application* delegate = Win32Application::Instance();
     switch (message)
@@ -303,6 +308,12 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
         int wmId = LOWORD(wParam);
         switch (wmId)
         {
+        case ID_OPTIONS_CLEAR:
+            delegate->GetSkeletonCanvas()->Clear();
+            break;
+        case ID_OPTIONS_CONVERTTOCALOTTE:
+            Convert();
+            break;
         case IDM_EXIT:
             DestroyWindow(hWnd);
             break;
@@ -335,4 +346,12 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
     return DefWindowProc(hWnd, message, wParam, lParam);
+}
+
+void SkeletonCanvas::Convert() {
+    auto delegate = Win32Application::Instance();
+    auto converter = new Converter();
+    auto calotteCanvas = delegate->GetCalotteCanvas();
+    calotteCanvas->setVertices(converter->ConvertToCalotte(delegate->GetSkeletonCanvas()->GetVertices()));
+    delete converter;
 }

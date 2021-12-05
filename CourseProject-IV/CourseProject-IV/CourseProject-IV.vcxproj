@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Atom.h" />
+    <ClInclude Include="AtomColor.h" />
     <ClInclude Include="CalotteCanvas.h" />
     <ClInclude Include="Converter.h" />
     <ClInclude Include="ConverterNode.h" />
