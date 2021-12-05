@@ -7,19 +7,22 @@
 
 class SkeletonCanvas;
 class Toolbar;
+class CalotteCanvas;
+
 class Win32Application
 {
 public:
     static Win32Application* Instance();
-    SkeletonCanvas* getSkeletonCanvas() { return skeletonCanvas; }
+    CalotteCanvas* GetCalotteCanvas() { return calotteCanvas;  }
+    SkeletonCanvas* GetSkeletonCanvas() { return skeletonCanvas; }
     int Run(HINSTANCE hInstance, int nCmdShow);
-    int SetupToolBar(HWND hwnd);
+    int SetupChildWindows(HWND hwnd);
 
 private:
     Win32Application();
 
     Toolbar* toolbar;
-    //CalotteCanvas* calotteCanvas;
+    CalotteCanvas* calotteCanvas;
 
     SkeletonCanvas* skeletonCanvas;
 

@@ -11,7 +11,7 @@ public:
     void Configure(HWND parent, HINSTANCE hInst);
 private:
     HWND window;
-    LPCWSTR szToolsDialogClass = L"Tools Dialog";
+    LPCWSTR szToolsDialogClass = L"Tools Bar";
     static LRESULT CALLBACK ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 

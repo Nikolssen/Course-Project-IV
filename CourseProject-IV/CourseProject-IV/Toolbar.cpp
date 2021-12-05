@@ -41,7 +41,7 @@ void Toolbar::Configure(HWND parent, HINSTANCE hInst) {
 LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	static HWND hTools[12];
 	static HBITMAP hBitmap[12];
-	State* state = Win32Application::Instance()->getSkeletonCanvas()->GetState();
+	State* state = Win32Application::Instance()->GetSkeletonCanvas()->GetState();
 	switch (message)
 	{
 	case WM_CREATE:
@@ -50,7 +50,7 @@ LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 			for (int x = 5; x < 70; x += 35, i++, id++, idb++)
 			{
 				
-				hTools[i] = CreateWindow(L"BUTTON", NULL, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_BITMAP, x, y, 30, 30,
+				hTools[i] = CreateWindow(L"BUTTON", NULL, WS_CHILD | WS_VISIBLE | BS_BITMAP, x, y, 30, 30,
 					hWnd, (HMENU)id, (HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), NULL);
 				hBitmap[i] = (HBITMAP)LoadImageW((HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), MAKEINTRESOURCEW(idb), IMAGE_BITMAP, 25, 25, NULL);
 				SendDlgItemMessage(hWnd, id, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)hBitmap[i]);

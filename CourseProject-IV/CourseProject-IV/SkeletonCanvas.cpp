@@ -296,7 +296,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
     {
     case WM_CREATE:
     {
-        delegate->SetupToolBar(hWnd);
+        delegate->SetupChildWindows(hWnd);
         break;
     }
 
@@ -318,7 +318,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
     {
         int x = GET_X_LPARAM(lParam);
         int y = GET_Y_LPARAM(lParam);
-        delegate->getSkeletonCanvas()->LeftClick(x, y);
+        delegate->GetSkeletonCanvas()->LeftClick(x, y);
         break;
     }
 
@@ -326,7 +326,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
     {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
-        delegate->getSkeletonCanvas()->Paint(hdc, ps);
+        delegate->GetSkeletonCanvas()->Paint(hdc, ps);
         EndPaint(hWnd, &ps);
     }
     break;

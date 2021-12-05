@@ -8,7 +8,8 @@ Win32Application* Win32Application::Instance() {
 Win32Application::Win32Application() {
 	this->toolbar = nullptr;
 	this->skeletonCanvas = nullptr;
-	//this->calotteCanvas = nullptr;
+	this->hInst = nullptr;
+	this->calotteCanvas = nullptr;
 }
 
 int Win32Application::Run(HINSTANCE hInstance, int nCmdShow) {
@@ -36,9 +37,12 @@ int Win32Application::Run(HINSTANCE hInstance, int nCmdShow) {
 	return (int)msg.wParam;
 }
 
-int Win32Application::SetupToolBar(HWND hwnd) {
+int Win32Application::SetupChildWindows(HWND hwnd) {
 	this->toolbar = new Toolbar();
 	this->toolbar->Configure(hwnd, this->hInst);
+
+	this->calotteCanvas = new CalotteCanvas();
+	this->calotteCanvas->Configure(hwnd, this->hInst);
 
 	return 0;
 }
