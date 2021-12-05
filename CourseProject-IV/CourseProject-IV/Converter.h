@@ -5,6 +5,7 @@
 #include "Vertex2D.h"
 #include "Vertex3D.h"
 #include "ConverterNode.h"
+#include "State.h"
 class Converter
 {
 public:
@@ -19,7 +20,6 @@ private:
     void Linear(Element vertex);
     bool IsSimple(std::vector<Vertex2D>& vertices2D);
     Point Spin(Point& root, float phi, float theta);
-    char GetPossibleBonds(Element activeElement);
     void MakeTree(ConverterNode* root, std::vector<Vertex2D>& vertices2D);
     void SortTree(ConverterNode* root);
     void InitCoordinates(ConverterNode* root);
@@ -29,5 +29,6 @@ private:
     void AdvancedSpin(ConverterNode* root);
 
     std::vector<Vertex3D> vertices3D;
+    const double pi = 3.14159265358979323846;
 };
 
