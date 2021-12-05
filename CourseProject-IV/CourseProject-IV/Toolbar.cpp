@@ -31,11 +31,11 @@ void Toolbar::Configure(HWND parent, HINSTANCE hInst) {
 	wct.hIcon = NULL;
 	wct.hIconSm = NULL;
 	wct.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wct.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wct.hbrBackground = CreateSolidBrush(RGB(245, 245, 245));;
 	wct.lpszMenuName = NULL;
 	wct.lpszClassName = szToolsDialogClass;
 	RegisterClassEx(&wct);
-	this->window = CreateWindowExW(WS_EX_TOOLWINDOW, szToolsDialogClass, L"Tools", WS_VISIBLE, 0, 300, 90, 270, parent, NULL, hInst, NULL);
+	this->window = CreateWindowExW(WS_EX_TOOLWINDOW, szToolsDialogClass, L"Tools", WS_VISIBLE | WS_CHILD | WS_BORDER, 0, 0, 50, 720, parent, NULL, hInst, NULL);
 }
 
 LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -45,16 +45,13 @@ LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 	switch (message)
 	{
 	case WM_CREATE:
-		for (int i = 0, y = 5, id = IDT_CARBON, idb = IDB_CARBON; y < 185; y += 35)
+		for (int i = 0, y = 0, id = IDT_CARBON, idb = IDB_CARBON; i < 12; y += 48, i++, id++, idb++)
 		{
-			for (int x = 5; x < 70; x += 35, i++, id++, idb++)
-			{
-				
-				hTools[i] = CreateWindow(L"BUTTON", NULL, WS_CHILD | WS_VISIBLE | BS_BITMAP, x, y, 30, 30,
+			if (i == 9) { y += 10; }
+			hTools[i] = CreateWindowW(L"BUTTON", NULL, WS_CHILD | WS_VISIBLE | BS_BITMAP, 1, y, 48, 48,
 					hWnd, (HMENU)id, (HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), NULL);
-				hBitmap[i] = (HBITMAP)LoadImageW((HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), MAKEINTRESOURCEW(idb), IMAGE_BITMAP, 25, 25, NULL);
-				SendDlgItemMessage(hWnd, id, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)hBitmap[i]);
-			}
+			hBitmap[i] = (HBITMAP)LoadImageW((HINSTANCE)GetWindowLong(hWnd, GWL_HINSTANCE), MAKEINTRESOURCEW(idb), IMAGE_BITMAP, 48, 48, NULL);
+			SendDlgItemMessage(hWnd, id, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)hBitmap[i]);
 		}
 		break;
 	case WM_COMMAND:

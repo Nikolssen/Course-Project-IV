@@ -12,10 +12,10 @@ public:
     CalotteCanvas();
     HWND GetWindow() { return window; }
     void Configure(HWND parent, HINSTANCE hInst);
-    void Zoom();
+    //void Zoom();
     void Rotate(int x, int y, int z);
     void ResetRotation();
-
+    void InitGL();
 private:
     HWND window;
     std::vector<Vertex3D> vertices3D;

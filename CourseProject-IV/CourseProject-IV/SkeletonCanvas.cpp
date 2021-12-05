@@ -24,7 +24,7 @@ void SkeletonCanvas::Configure(HINSTANCE hInstance, WCHAR* windowClass, WCHAR* t
     RegisterClassExW(&wcex);
 
     this->window = CreateWindowW(windowClass, title, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+        CW_USEDEFAULT, 0, 1280, 720, nullptr, nullptr, hInstance, nullptr);
 }
 
 void SkeletonCanvas::MakeVisible(int nCmdShow) {
@@ -152,11 +152,9 @@ void SkeletonCanvas::CalculateVertexPosition(int x0, int y0, int x, int y, int v
 }
 
 bool SkeletonCanvas::IsWithinSafeZone(int x, int y) {
-    RECT rect;
-    GetClientRect(window, &rect);
-    int x0 = rect.right;
-    int y0 = rect.bottom;
-    return ((x > 50) && (x < x0 - 50) && (y > 50) && (y < y0 - 50));
+    int x0 = 640;
+    int y0 = 650;
+    return ((x > 100) && (x < x0 - 50) && (y > 50) && (y < y0 - 50));
 }
 
 void SkeletonCanvas::Paint(HDC dc, PAINTSTRUCT ps) {
