@@ -8,7 +8,7 @@ struct ConverterNode
 	ConverterNode* third = nullptr;
 	ConverterNode* fourth = nullptr;
 	ConverterNode* parent = nullptr;
-	Vertex3D vertex;
+	Vertex3D vertex{};
 	int index = 0;
 	int lastBond = 0;
 	int bond = 0;

@@ -15,7 +15,6 @@ public:
     void LeftClick(int x, int y);
     void Paint(HDC dc, PAINTSTRUCT ps);
     void Configure(HINSTANCE hInstance, WCHAR* windowClass, WCHAR* title);
-
     HWND GetWindow() { return window; }
     State* GetState() { return &state; }
 private:

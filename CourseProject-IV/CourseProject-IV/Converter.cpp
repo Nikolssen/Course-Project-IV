@@ -188,7 +188,7 @@ void Converter::ClearTree(ConverterNode* root)
 Point Converter::Spin(Point& root, float phi, float theta)
 {
 
-    Point result;
+    Point result{};
     float r = 0.8;
     result.z = r * cos(theta) * sin(phi);
     result.x = r * sin(theta) * sin(phi);
@@ -680,7 +680,7 @@ void Converter::Triangle(Element vertex)
     Vertex3D root = { {0, 0, 0}, vertex };
     vertices3D.push_back(root);
     float r = 0.8;
-    Point _1;
+    Point _1{};
     _1.y = -r * cos(degree / 2);
     _1.z = 0;
     _1.x = r * sin(degree / 2);

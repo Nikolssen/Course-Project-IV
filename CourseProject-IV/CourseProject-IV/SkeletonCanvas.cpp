@@ -33,7 +33,7 @@ void SkeletonCanvas::MakeVisible(int nCmdShow) {
 }
 
 void SkeletonCanvas::LeftClick(int x, int y) {
-    Vertex2D currentVertex;
+    Vertex2D currentVertex{};
     if (IsWithinSafeZone(x, y))
     {
         int counter = vertices.size() - 1;
@@ -179,7 +179,7 @@ void SkeletonCanvas::Paint(HDC dc, PAINTSTRUCT ps) {
     {
         str = vertices[0].Description();
         LPCWSTR result =str.c_str();
-        RECT rect;
+        RECT rect{};
         rect.left = vertices[0].x;
         rect.top = vertices[0].y - 10;
         rect.bottom = rect.top + 40;
@@ -192,7 +192,7 @@ void SkeletonCanvas::Paint(HDC dc, PAINTSTRUCT ps) {
         {
             str = vertices[0].Description();
             LPCWSTR result = str.c_str();
-            RECT rect;
+            RECT rect{};
             rect.left = vertices[0].x - 10;
             rect.top = vertices[0].y - 10;
             rect.bottom = rect.top + 40;
@@ -206,7 +206,7 @@ void SkeletonCanvas::Paint(HDC dc, PAINTSTRUCT ps) {
             {
                 str = vertices[i].Description();
                 LPCWSTR result = str.c_str();
-                RECT rect;
+                RECT rect{};
                 rect.left = vertices[i].x - 5;
                 rect.top = vertices[i].y - 10;
                 rect.bottom = rect.top + 40;

@@ -2,7 +2,9 @@
 #include <Windows.h>
 #include <vector>
 #include <gl/GL.h>
+#include <gl/gl.h>
 #include <gl/GLU.h>
+#pragma comment( lib, "./OpenGL32.Lib" )
 #include "Vertex3D.h"
 #include "Win32Application.h"
 
@@ -16,6 +18,9 @@ public:
     void Rotate(int x, int y, int z);
     void ResetRotation();
     void InitGL();
+    void SetupContext();
+    void ReleaseResources();
+    void Render();
 private:
     HWND window;
     std::vector<Vertex3D> vertices3D;
@@ -32,7 +37,8 @@ private:
     const GLfloat high_shininess[1] = { 100.0f };
 
     GLfloat xRot, yRot, zRot;
-
+    HGLRC      hRC;
+    HDC        hDC;
     static LRESULT CALLBACK CanvasProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 
