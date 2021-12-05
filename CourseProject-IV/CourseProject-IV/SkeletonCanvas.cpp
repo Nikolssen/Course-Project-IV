@@ -171,7 +171,7 @@ void SkeletonCanvas::Paint(HDC dc, PAINTSTRUCT ps) {
     HPEN pen = CreatePen(PS_SOLID, 3, RGB(0, 0, 0));
     SelectObject(dc, pen);
     
-    HFONT hFont = CreateFontW(30, 12, 0, 0, FW_MEDIUM, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
+    HFONT hFont = CreateFontW(30, 0, 0, 0, FW_MEDIUM, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
             CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, TEXT("Arial"));
     SelectObject(dc, hFont);
     SetBkMode(dc, TRANSPARENT);

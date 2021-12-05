@@ -1,5 +1,6 @@
 #pragma once
 #include "Atom.h"
+#include <string>
 struct Vertex2D
 {
     int x;
