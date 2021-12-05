@@ -32,9 +32,9 @@ void SkeletonCanvas::MakeVisible(int nCmdShow) {
     UpdateWindow(window);
 }
 
-void SkeletonCanvas::leftClick(int x, int y) {
+void SkeletonCanvas::LeftClick(int x, int y) {
     Vertex2D currentVertex;
-    if (isWithinSafeZone(x, y))
+    if (IsWithinSafeZone(x, y))
     {
         int counter = vertices.size() - 1;
         switch (counter)
@@ -44,26 +44,26 @@ void SkeletonCanvas::leftClick(int x, int y) {
             currentVertex.y = y;
             currentVertex.prevx = x + round(length * cos(pi / 6));
             currentVertex.prevy = y - round(length * sin(pi / 6));
-            currentVertex.shortFront = (state.getElement() != Element::Carbon);
+            currentVertex.shortFront = (state.GetElement() != Element::Carbon);
             currentVertex.shortRear = false;
-            currentVertex.atom.element = state.getElement();
-            currentVertex.atom.freeBonds = State::getMaxBonds(state.getElement());
+            currentVertex.atom.element = state.GetElement();
+            currentVertex.atom.freeBonds = State::GetMaxBonds(state.GetElement());
             currentVertex.atom.bond = 0;
             vertices.push_back(currentVertex);
             break;
         case 0:
-            if ((vertices[0].x - 10 < x) && (vertices[0].x + 10 > x) && (vertices[0].y - 10 < y) && (vertices[0].y + 10 > y) && (vertices[0].atom.freeBonds - state.getBond() >= 0))
+            if ((vertices[0].x - 10 < x) && (vertices[0].x + 10 > x) && (vertices[0].y - 10 < y) && (vertices[0].y + 10 > y) && (vertices[0].atom.freeBonds - state.GetBond() >= 0))
             {
                 currentVertex.x = vertices[0].prevx;
                 currentVertex.y = vertices[0].prevy;
                 currentVertex.prevx = vertices[0].x;
                 currentVertex.prevy = vertices[0].y;
-                currentVertex.atom.element = state.getElement();
-                vertices[0].atom.freeBonds -= state.getBond();
-                vertices[0].atom.bond = state.getBond();
-                currentVertex.atom.freeBonds = State::getMaxBonds(state.getElement()) - state.getBond();
-                currentVertex.atom.bond = state.getBond();
-                currentVertex.shortFront = (state.getElement() != Element::Carbon);
+                currentVertex.atom.element = state.GetElement();
+                vertices[0].atom.freeBonds -= state.GetBond();
+                vertices[0].atom.bond = state.GetBond();
+                currentVertex.atom.freeBonds = State::GetMaxBonds(state.GetElement()) - state.GetBond();
+                currentVertex.atom.bond = state.GetBond();
+                currentVertex.shortFront = (state.GetElement() != Element::Carbon);
                 currentVertex.shortRear = vertices[0].shortFront;
                 vertices.push_back(currentVertex);
             }
@@ -73,7 +73,7 @@ void SkeletonCanvas::leftClick(int x, int y) {
             int i;
             for (i = 0; i <= counter; i++)
             {
-                if ((vertices[i].x - 10 < x) && (vertices[i].x + 10 > x) && (vertices[i].y - 10 < y) && (vertices[i].y + 10 > y) && (vertices[i].atom.freeBonds - state.getBond() >= 0))
+                if ((vertices[i].x - 10 < x) && (vertices[i].x + 10 > x) && (vertices[i].y - 10 < y) && (vertices[i].y + 10 > y) && (vertices[i].atom.freeBonds - state.GetBond() >= 0))
                 {
                     flag = true;
                     break;
@@ -84,7 +84,7 @@ void SkeletonCanvas::leftClick(int x, int y) {
                 int x1;
                 int y1;
                 int exodus;
-                if (state.getBond() == 3 || vertices[i].atom.bond == 3 || (state.getBond() == 2 && vertices[i].atom.bond == 2))
+                if (state.GetBond() == 3 || vertices[i].atom.bond == 3 || (state.GetBond() == 2 && vertices[i].atom.bond == 2))
                     exodus = 3;
                 else
                 {
@@ -92,19 +92,19 @@ void SkeletonCanvas::leftClick(int x, int y) {
                         exodus = 2 - vertices[i].atom.freeBonds;
 
                     else
-                        exodus = (State::getMaxBonds(vertices[i].atom.element) - vertices[i].atom.freeBonds - 1);
+                        exodus = (State::GetMaxBonds(vertices[i].atom.element) - vertices[i].atom.freeBonds - 1);
 
                 }
-                getVertexPosition(vertices[i].prevx, vertices[i].prevy, vertices[i].x, vertices[i].y, exodus, x1, y1);
+                CalculateVertexPosition(vertices[i].prevx, vertices[i].prevy, vertices[i].x, vertices[i].y, exodus, x1, y1);
                 currentVertex.x = x1;
                 currentVertex.y = y1;
                 currentVertex.prevx = vertices[i].x;
                 currentVertex.prevy = vertices[i].y;
-                currentVertex.atom.element = state.getElement();
-                vertices[i].atom.freeBonds -= state.getBond();
-                currentVertex.atom.bond = state.getBond();
-                currentVertex.atom.freeBonds = State::getMaxBonds(state.getElement()) - state.getBond();
-                currentVertex.shortFront = (state.getElement() != Element::Carbon);
+                currentVertex.atom.element = state.GetElement();
+                vertices[i].atom.freeBonds -= state.GetBond();
+                currentVertex.atom.bond = state.GetBond();
+                currentVertex.atom.freeBonds = State::GetMaxBonds(state.GetElement()) - state.GetBond();
+                currentVertex.shortFront = (state.GetElement() != Element::Carbon);
                 currentVertex.shortRear = vertices[i].shortFront;
                 vertices.push_back(currentVertex);
             }
@@ -113,7 +113,7 @@ void SkeletonCanvas::leftClick(int x, int y) {
     }
 }
 
-void SkeletonCanvas::getVertexPosition(int x0, int y0, int x, int y, int value, int &x1, int &y1)
+void SkeletonCanvas::CalculateVertexPosition(int x0, int y0, int x, int y, int value, int &x1, int &y1)
 {
     double alpha, c, s;
     int rx, ry;
@@ -151,12 +151,143 @@ void SkeletonCanvas::getVertexPosition(int x0, int y0, int x, int y, int value, 
     y1 = round(y + rx * s + ry * c);
 }
 
-bool SkeletonCanvas::isWithinSafeZone(int x, int y) {
+bool SkeletonCanvas::IsWithinSafeZone(int x, int y) {
     RECT rect;
     GetClientRect(window, &rect);
     int x0 = rect.right;
     int y0 = rect.bottom;
     return ((x > 50) && (x < x0 - 50) && (y > 50) && (y < y0 - 50));
+}
+
+void SkeletonCanvas::Paint(HDC dc, PAINTSTRUCT ps) {
+    if (vertices.size() == 0) {
+        return;
+    }
+    HGDIOBJ original = NULL;
+
+    original = SelectObject(dc, GetStockObject(DC_PEN));
+    DeletePen(original);
+
+    HPEN pen = CreatePen(PS_SOLID, 3, RGB(0, 0, 0));
+    SelectObject(dc, pen);
+    
+    HFONT hFont = CreateFontW(30, 12, 0, 0, FW_MEDIUM, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
+            CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, TEXT("Arial"));
+    SelectObject(dc, hFont);
+    SetBkMode(dc, TRANSPARENT);
+    std::wstring str;
+    int counter = vertices.size() - 1;
+    if (counter == 0)
+    {
+        str = vertices[0].Description();
+        LPCWSTR result =str.c_str();
+        RECT rect;
+        rect.left = vertices[0].x;
+        rect.top = vertices[0].y - 10;
+        rect.bottom = rect.top + 40;
+        rect.right = rect.left + 80;
+        DrawText(dc, result, -1, &rect, DT_LEFT | DT_TOP);
+    }
+    else
+    {
+        if (vertices[0].atom.element != Element::Carbon)
+        {
+            str = vertices[0].Description();
+            LPCWSTR result = str.c_str();
+            RECT rect;
+            rect.left = vertices[0].x - 10;
+            rect.top = vertices[0].y - 10;
+            rect.bottom = rect.top + 40;
+            rect.right = rect.left + 80;
+            DrawText(dc, result, -1, &rect, DT_LEFT | DT_TOP);
+        }
+        int x0, x1, y0, y1;
+        for (int i = 1; i <= counter; i++)
+        {
+            if (vertices[i].atom.element != Element::Carbon)
+            {
+                str = vertices[i].Description();
+                LPCWSTR result = str.c_str();
+                RECT rect;
+                rect.left = vertices[i].x - 5;
+                rect.top = vertices[i].y - 10;
+                rect.bottom = rect.top + 40;
+                rect.right = rect.left + 80;
+                DrawText(dc, result, -1, &rect, DT_LEFT | DT_TOP);
+            }
+            if (vertices[i].shortRear)
+            {
+                x0 = round(vertices[i].x / 4.0 + vertices[i].prevx / 4.0 * 3);
+                y0 = round(vertices[i].y / 4.0 + vertices[i].prevy / 4.0 * 3);
+            }
+            else
+            {
+                x0 = vertices[i].prevx;
+                y0 = vertices[i].prevy;
+            }
+
+            if (vertices[i].shortFront)
+            {
+
+                x1 = round(vertices[i].x / 4.0 * 3 + vertices[i].prevx / 4.0);
+                y1 = round(vertices[i].y / 4.0 * 3 + vertices[i].prevy / 4.0);
+            }
+            else
+            {
+                x1 = vertices[i].x;
+                y1 = vertices[i].y;
+            }
+            switch (vertices[i].atom.bond)
+            {
+
+
+            case 2:
+                if (vertices[i].prevx == vertices[i].x)
+                {
+                    
+                    MoveToEx(dc, x0 - 2, y0, NULL);
+                    LineTo(dc, x1 - 2, y1);
+
+                    MoveToEx(dc, x0 + 2, y0, NULL);
+                    LineTo(dc, x1 + 2, y1);
+                }
+                else
+                {
+                    MoveToEx(dc, x0, y0 - 3, NULL);
+                    LineTo(dc, x1, y1 - 3);
+
+                    MoveToEx(dc, x0, y0 + 3, NULL);
+                    LineTo(dc, x1, y1 + 3);
+                }
+                break;
+
+
+            case 3:
+
+                if (vertices[i].prevx == vertices[i].x)
+                {
+                    MoveToEx(dc, x0 - 5, y0, NULL);
+                    LineTo(dc, x1 - 5, y1);
+
+                    MoveToEx(dc, x0 + 5, y0, NULL);
+                    LineTo(dc, x1 + 5, y1);
+                }
+                else
+                {
+                    MoveToEx(dc, x0, y0 - 5, NULL);
+                    LineTo(dc, x1, y1 - 5);
+
+                    MoveToEx(dc, x0, y0 + 5, NULL);
+                    LineTo(dc, x1, y1 + 5);
+                }
+            case 1:
+                MoveToEx(dc, x0, y0, NULL);
+                LineTo(dc, x1, y1);
+                break;
+            }
+        }
+    }
+    DeleteObject(hFont);
 }
 
 LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -187,7 +318,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
     {
         int x = GET_X_LPARAM(lParam);
         int y = GET_Y_LPARAM(lParam);
-        delegate->getSkeletonCanvas()->leftClick(x, y);
+        delegate->getSkeletonCanvas()->LeftClick(x, y);
         break;
     }
 
@@ -195,7 +326,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
     {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
-
+        delegate->getSkeletonCanvas()->Paint(hdc, ps);
         EndPaint(hWnd, &ps);
     }
     break;

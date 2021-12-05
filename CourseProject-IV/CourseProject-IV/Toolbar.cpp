@@ -41,7 +41,7 @@ void Toolbar::Configure(HWND parent, HINSTANCE hInst) {
 LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	static HWND hTools[12];
 	static HBITMAP hBitmap[12];
-	State* state = Win32Application::Instance()->getSkeletonCanvas()->getState();
+	State* state = Win32Application::Instance()->getSkeletonCanvas()->GetState();
 	switch (message)
 	{
 	case WM_CREATE:
@@ -62,40 +62,40 @@ LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPAR
 		switch (LOWORD(wParam)) 
 		{
 		case IDT_CARBON:
-			state->setElement(Element::Carbon);
+			state->SetElement(Element::Carbon);
 			break;
 		case IDT_NITROGEN:
-			state->setElement(Element::Nitrogen);
+			state->SetElement(Element::Nitrogen);
 			break;
 		case IDT_OXYGEN:
-			state->setElement(Element::Oxygen);
+			state->SetElement(Element::Oxygen);
 			break;
 		case IDT_SULFUR:
-			state->setElement(Element::Sulfur);
+			state->SetElement(Element::Sulfur);
 			break;
 		case IDT_PHOSPHORUS:
-			state->setElement(Element::Phosphorus);
+			state->SetElement(Element::Phosphorus);
 			break;
 		case IDT_FLUORINE:
-			state->setElement(Element::Fluorine);
+			state->SetElement(Element::Fluorine);
 			break;
 		case IDT_CHLORINE:
-			state->setElement(Element::Chlorine);
+			state->SetElement(Element::Chlorine);
 			break;
 		case IDT_BROMINE:
-			state->setElement(Element::Bromine);
+			state->SetElement(Element::Bromine);
 			break;
 		case IDT_IODINE:
-			state->setElement(Element::Iodine);
+			state->SetElement(Element::Iodine);
 			break;
 		case IDT_SINGLE:
-			state->setBond(1);
+			state->SetBond(1);
 			break;
 		case IDT_DOUBLE:
-			state->setBond(2);
+			state->SetBond(2);
 			break;
 		case IDT_TRIPLE:
-			state->setBond(3);
+			state->SetBond(3);
 			break;
 		}
 		break;

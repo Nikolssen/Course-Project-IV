@@ -1,17 +1,17 @@
 #include "State.h"
 
-void State::setBond(int bond) {
-    if (getMaxBonds(element) >= bond)
+void State::SetBond(int bond) {
+    if (GetMaxBonds(element) >= bond)
         this->bond = bond;
 }
 
-void State::setElement(Element element) {
+void State::SetElement(Element element) {
     this->element = element;
-    if (bond > getMaxBonds(element))
+    if (bond > GetMaxBonds(element))
         bond = 1;
 }
 
-int State::getMaxBonds(Element element) {
+int State::GetMaxBonds(Element element) {
     switch (element)
     {
     case Element::Carbon:

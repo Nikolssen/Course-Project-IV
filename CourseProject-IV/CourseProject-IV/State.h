@@ -4,12 +4,12 @@
 struct State
 {
 public:
-	int getBond() { return this->bond; }
-	void setBond(int bond);
+	int GetBond() { return this->bond; }
+	void SetBond(int bond);
 
-	Element getElement() { return this->element; }
-	void setElement(Element element);
-	static int getMaxBonds(Element element);
+	Element GetElement() { return this->element; }
+	void SetElement(Element element);
+	static int GetMaxBonds(Element element);
 private:
 	int bond = 1;
 	Element element = Element::Carbon;
