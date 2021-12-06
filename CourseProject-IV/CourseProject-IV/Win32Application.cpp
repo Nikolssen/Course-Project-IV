@@ -25,24 +25,13 @@ int Win32Application::Run(HINSTANCE hInstance, int nCmdShow) {
 
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_COURSEPROJECTIV));
 	MSG msg;
-	bool isDone = false;
 
-	while (!isDone)                                    // Loop That Runs While done=FALSE
+	while (GetMessage(&msg, NULL, 0, 0))
 	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))   // Is There A Message Waiting?
+		if (!TranslateAcceleratorW(msg.hwnd, hAccelTable, &msg))
 		{
-			if (msg.message == WM_QUIT)               // Have We Received A Quit Message?
-			{
-				isDone = true;                          // If So done=TRUE
-			}
-			else                                    // If Not, Deal With Window Messages
-			{
-				TranslateMessage(&msg);             // Translate The Message
-				DispatchMessage(&msg);              // Dispatch The Message
-			}
-		}
-		else {
-			calotteCanvas->Render();
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
 		}
 	}
 	return (int)msg.wParam;

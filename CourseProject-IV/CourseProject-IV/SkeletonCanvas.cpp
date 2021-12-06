@@ -302,7 +302,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
         delegate->SetupChildWindows(hWnd);
         break;
     }
-
+        
     case WM_COMMAND:
     {
         int wmId = LOWORD(wParam);
@@ -313,6 +313,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
             break;
         case ID_OPTIONS_CONVERTTOCALOTTE:
             Convert();
+            delegate->GetCalotteCanvas()->Render();
             break;
         case IDM_EXIT:
             DestroyWindow(hWnd);

@@ -16,14 +16,11 @@ public:
     HWND GetWindow() { return window; }
     void Configure(HWND parent, HINSTANCE hInst);
     void Zoom(int delta);
-    void Rotate(int x, int y, int z);
-
     void ReleaseResources();
     void Render();
     void setVertices(std::vector<Vertex3D> vertices) { vertices3D.clear(); vertices3D = vertices; }
 private:
     void Sphere(Vertex3D& vertex, int pos);
-    void ResetRotation();
     void InitGL();
     void SetupContext();
 

@@ -104,11 +104,11 @@
     <ClCompile Include="State.cpp">
       <Filter>Исходные файлы\SkeletonCanvas</Filter>
     </ClCompile>
-    <ClCompile Include="Win32Application.cpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClCompile>
     <ClCompile Include="Converter.cpp">
       <Filter>Исходные файлы\CalotteCanvas</Filter>
+    </ClCompile>
+    <ClCompile Include="Win32Application.cpp">
+      <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

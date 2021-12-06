@@ -2,7 +2,6 @@
 
 CalotteCanvas::CalotteCanvas() {
 	this->window = nullptr;
-	ResetRotation();
 }
 
 void CalotteCanvas::Configure(HWND parent, HINSTANCE hInst) {
@@ -25,10 +24,10 @@ void CalotteCanvas::Configure(HWND parent, HINSTANCE hInst) {
 
 void CalotteCanvas::InitGL() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black Background
-	glClearDepth(1.0f);	// Depth Buffer Setup
-	glEnable(GL_DEPTH_TEST); // Enables Depth Testing
-	glDepthFunc(GL_LEQUAL); // The Type Of Depth Testing To Do
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); 
+	glClearDepth(1.0f);	
+	glEnable(GL_DEPTH_TEST); 
+	glDepthFunc(GL_LEQUAL); 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
 	glEnable(GL_COLOR_MATERIAL);
@@ -58,7 +57,7 @@ void CalotteCanvas::InitGL() {
 	glLoadIdentity();
 
 	float ratio_w_h = 1;
-	gluPerspective(45 /*view angle*/, ratio_w_h, 0.1 /*clip close*/, 200 /*clip far*/);
+	gluPerspective(45 , ratio_w_h, 0.1 , 200 );
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
@@ -115,19 +114,10 @@ void CalotteCanvas::SetupContext() {
 	}
 	return;
 }
-
-void CalotteCanvas::ResetRotation() {
-	xRot = yRot = zRot = 0.f;
-}
-
-void CalotteCanvas::Rotate(int x, int y, int z) {
-	xRot += x;
-	yRot += y;
-	zRot += z;
-}
 void CalotteCanvas::Render() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear Screen And Depth Buffer
 	glLoadIdentity();
+	
 	while (reusableQuadrics.size() < vertices3D.size())
 	{
 		GLUquadricObj* quad = gluNewQuadric();
@@ -202,6 +192,7 @@ void CalotteCanvas::Sphere(Vertex3D& vertex, int pos)
 void CalotteCanvas::Zoom(int delta) {
 
 	dist += round(delta / 120.0);
+	RedrawWindow(window, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 }
 
 LRESULT CALLBACK CalotteCanvas::CanvasProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -209,11 +200,18 @@ LRESULT CALLBACK CalotteCanvas::CanvasProc(HWND hWnd, UINT message, WPARAM wPara
 	int zDelta;
 	switch (message) {
 	case WM_MOUSEWHEEL:
+	{
 		zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
 		canvas->Zoom(zDelta);
 		break;
 	}
-	
+
+	case WM_PAINT:
+	{
+		canvas->Render();
+		break;
+	}
+	}
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
