@@ -23,8 +23,8 @@ void SkeletonCanvas::Configure(HINSTANCE hInstance, WCHAR* windowClass, WCHAR* t
 
     RegisterClassExW(&wcex);
 
-    this->window = CreateWindowW(windowClass, title, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, 1280, 720, nullptr, nullptr, hInstance, nullptr);
+    this->window = CreateWindowW(windowClass, title, WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME ^ WS_MAXIMIZEBOX,
+        CW_USEDEFAULT, 0, 1280, 674, nullptr, nullptr, hInstance, nullptr);
 }
 
 void SkeletonCanvas::MakeVisible(int nCmdShow) {

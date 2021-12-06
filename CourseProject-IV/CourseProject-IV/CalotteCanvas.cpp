@@ -17,7 +17,7 @@ void CalotteCanvas::Configure(HWND parent, HINSTANCE hInst) {
 	wc.lpszClassName = szCanvasClass;
 	RegisterClass(&wc);
 	
-	this->window = CreateWindowW(szCanvasClass, L"CalotteCanvas", WS_VISIBLE | WS_CHILD , 665, 0, 615, 720, parent, nullptr, hInst, nullptr);
+	this->window = CreateWindowW(szCanvasClass, L"CalotteCanvas", WS_VISIBLE | WS_CHILD , 665, 0, 615, 615, parent, nullptr, hInst, nullptr);
 	this->SetupContext();
 	this->InitGL();
 }

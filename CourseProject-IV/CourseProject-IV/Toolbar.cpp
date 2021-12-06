@@ -35,7 +35,7 @@ void Toolbar::Configure(HWND parent, HINSTANCE hInst) {
 	wct.lpszMenuName = NULL;
 	wct.lpszClassName = szToolsDialogClass;
 	RegisterClassEx(&wct);
-	this->window = CreateWindowExW(WS_EX_TOOLWINDOW, szToolsDialogClass, L"Tools", WS_VISIBLE | WS_CHILD | WS_BORDER, 0, 0, 50, 720, parent, NULL, hInst, NULL);
+	this->window = CreateWindowExW(WS_EX_TOOLWINDOW, szToolsDialogClass, L"Tools", WS_VISIBLE | WS_CHILD | WS_BORDER, 0, 0, 50, 615, parent, NULL, hInst, NULL);
 }
 
 LRESULT CALLBACK Toolbar::ToolsProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
