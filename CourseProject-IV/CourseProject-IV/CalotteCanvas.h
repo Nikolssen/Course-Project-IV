@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <vector>
+#include <string>
 #include <gl/gl.h>
 #include <gl/glu.h>
 #pragma comment( lib, "./OpenGL32.Lib" )
@@ -14,7 +15,7 @@ public:
     CalotteCanvas();
     HWND GetWindow() { return window; }
     void Configure(HWND parent, HINSTANCE hInst);
-    //void Zoom();
+    void Zoom(int delta);
     void Rotate(int x, int y, int z);
 
     void ReleaseResources();

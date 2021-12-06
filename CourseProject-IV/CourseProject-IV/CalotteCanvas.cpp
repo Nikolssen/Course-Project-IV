@@ -53,7 +53,7 @@ void CalotteCanvas::InitGL() {
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 	glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
-	glViewport(0, 0, 615, 720);
+	glViewport(0, 0, 615, 615);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
@@ -199,9 +199,21 @@ void CalotteCanvas::Sphere(Vertex3D& vertex, int pos)
 
 }
 
+void CalotteCanvas::Zoom(int delta) {
+
+	dist += round(delta / 120.0);
+}
+
 LRESULT CALLBACK CalotteCanvas::CanvasProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	auto canvas = Win32Application::Instance()->GetCalotteCanvas();
-	canvas->Render();
+	int zDelta;
+	switch (message) {
+	case WM_MOUSEWHEEL:
+		zDelta = GET_WHEEL_DELTA_WPARAM(wParam);
+		canvas->Zoom(zDelta);
+		break;
+	}
+	
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
