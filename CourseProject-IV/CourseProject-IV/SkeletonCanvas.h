@@ -9,14 +9,17 @@
 #include <windowsx.h>
 #include "Converter.h"
 #include "AtomColor.h"
+#include "FileManager.h"
+class FileManager;
 class SkeletonCanvas
 {
 public:
     SkeletonCanvas();
     void MakeVisible(int nCmdShow);
     void LeftClick(int x, int y);
-    void Paint(HDC dc, PAINTSTRUCT ps);
+    void Paint(HDC dc);
     void Clear();
+    void Save();
     void Configure(HINSTANCE hInstance, WCHAR* windowClass, WCHAR* title);
     HWND GetWindow() { return window; }
     State* GetState() { return &state; }

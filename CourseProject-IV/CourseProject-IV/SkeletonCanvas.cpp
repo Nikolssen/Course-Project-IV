@@ -157,7 +157,7 @@ bool SkeletonCanvas::IsWithinSafeZone(int x, int y) {
     return ((x > 100) && (x < x0 - 50) && (y > 50) && (y < y0 - 50));
 }
 
-void SkeletonCanvas::Paint(HDC dc, PAINTSTRUCT ps) {
+void SkeletonCanvas::Paint(HDC dc) {
     if (vertices.size() == 0) {
         return;
     }
@@ -293,6 +293,16 @@ void SkeletonCanvas::Clear() {
     RedrawWindow(window, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 }
 
+void SkeletonCanvas::Save() {
+    HDC hdc = GetWindowDC(window);
+    auto memdc = CreateCompatibleDC(hdc);
+    HBITMAP hBmp = CreateCompatibleBitmap(hdc, 600, 600);
+    SelectObject(memdc, hBmp);
+    FloodFill(memdc, 5, 5, RGB(255, 255, 255));
+    Paint(memdc);
+    FileManager::Save(hBmp);
+}
+
 LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     Win32Application* delegate = Win32Application::Instance();
     switch (message)
@@ -310,6 +320,9 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
         {
         case ID_OPTIONS_CLEAR:
             delegate->GetSkeletonCanvas()->Clear();
+            break;
+        case ID_SAVE2D:
+            delegate->GetSkeletonCanvas()->Save();
             break;
         case ID_OPTIONS_CONVERTTOCALOTTE:
             Convert();
@@ -336,7 +349,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
     {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
-        delegate->GetSkeletonCanvas()->Paint(hdc, ps);
+        delegate->GetSkeletonCanvas()->Paint(hdc);
         EndPaint(hWnd, &ps);
     }
     break;

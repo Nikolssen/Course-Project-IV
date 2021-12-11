@@ -145,6 +145,7 @@
     <ClInclude Include="Converter.h" />
     <ClInclude Include="ConverterNode.h" />
     <ClInclude Include="Element.h" />
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Point.h" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="CalotteCanvas.cpp" />
     <ClCompile Include="Converter.cpp" />
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SkeletonCanvas.cpp" />
     <ClCompile Include="State.cpp" />

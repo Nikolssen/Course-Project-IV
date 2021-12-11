@@ -87,6 +87,9 @@
     <ClInclude Include="AtomColor.h">
       <Filter>Файлы заголовков\Structs and Enums</Filter>
     </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -108,6 +111,9 @@
       <Filter>Исходные файлы\CalotteCanvas</Filter>
     </ClCompile>
     <ClCompile Include="Win32Application.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
