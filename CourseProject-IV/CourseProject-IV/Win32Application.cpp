@@ -34,6 +34,10 @@ int Win32Application::Run(HINSTANCE hInstance, int nCmdShow) {
 			DispatchMessage(&msg);
 		}
 	}
+	this->calotteCanvas->ReleaseResources();
+	delete calotteCanvas;
+	delete toolbar;
+	delete skeletonCanvas;
 	return (int)msg.wParam;
 }
 
