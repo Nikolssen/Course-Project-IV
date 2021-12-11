@@ -18,6 +18,7 @@ public:
     void Zoom(int delta);
     void ReleaseResources();
     void Render();
+    void Save();
     void setVertices(std::vector<Vertex3D> vertices) { vertices3D.clear(); vertices3D = vertices; }
 private:
     void Sphere(Vertex3D& vertex, int pos);
@@ -37,7 +38,6 @@ private:
     const GLfloat mat_specular[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
     const GLfloat high_shininess[1] = { 100.0f };
     std::vector<Vertex3D> vertices3D;
-    GLfloat xRot, yRot, zRot;
     HGLRC      hRC;
     HDC        hDC;
     static LRESULT CALLBACK CanvasProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

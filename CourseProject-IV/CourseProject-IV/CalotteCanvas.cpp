@@ -17,7 +17,7 @@ void CalotteCanvas::Configure(HWND parent, HINSTANCE hInst) {
 	wc.lpszClassName = szCanvasClass;
 	RegisterClass(&wc);
 	
-	this->window = CreateWindowW(szCanvasClass, L"CalotteCanvas", WS_VISIBLE | WS_CHILD , 665, 0, 615, 615, parent, nullptr, hInst, nullptr);
+	this->window = CreateWindowW(szCanvasClass, L"CalotteCanvas", WS_VISIBLE | WS_CHILD , 655, 0, 615, 615, parent, nullptr, hInst, nullptr);
 	this->SetupContext();
 	this->InitGL();
 }
@@ -213,6 +213,17 @@ LRESULT CALLBACK CalotteCanvas::CanvasProc(HWND hWnd, UINT message, WPARAM wPara
 	}
 	}
 	return DefWindowProc(hWnd, message, wParam, lParam);
+}
+
+void CalotteCanvas::Save() {
+	HDC hdc = GetWindowDC(window);
+	auto memdc = CreateCompatibleDC(hdc);
+	HBITMAP hBmp = CreateCompatibleBitmap(hdc, 600, 600);
+	SelectObject(memdc, hBmp);
+	BitBlt(memdc,0,0,600,600,hdc,0,	0,SRCCOPY);
+	FileManager::Save(hBmp);
+	DeleteObject(hBmp);
+	DeleteDC(memdc);
 }
 
 void CalotteCanvas::ReleaseResources() {

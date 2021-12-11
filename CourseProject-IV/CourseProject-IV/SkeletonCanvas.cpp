@@ -296,11 +296,14 @@ void SkeletonCanvas::Clear() {
 void SkeletonCanvas::Save() {
     HDC hdc = GetWindowDC(window);
     auto memdc = CreateCompatibleDC(hdc);
-    HBITMAP hBmp = CreateCompatibleBitmap(hdc, 600, 600);
+    HBITMAP hBmp = CreateCompatibleBitmap(hdc, 650, 600);
     SelectObject(memdc, hBmp);
     FloodFill(memdc, 5, 5, RGB(255, 255, 255));
     Paint(memdc);
+    
     FileManager::Save(hBmp);
+    DeleteObject(hBmp);
+    DeleteDC(memdc);
 }
 
 LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -323,6 +326,9 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
             break;
         case ID_SAVE2D:
             delegate->GetSkeletonCanvas()->Save();
+            break;
+        case ID_OPTIONS_SAVECALOTTEIMAGE:
+            delegate->GetCalotteCanvas()->Save();
             break;
         case ID_OPTIONS_CONVERTTOCALOTTE:
             Convert();
