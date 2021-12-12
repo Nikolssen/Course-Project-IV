@@ -3,12 +3,11 @@
 
 Converter::Converter()
 {
-
 }
 
 Converter::~Converter()
 {
-
+    vertices3D.clear();
 }
 std::vector<Vertex3D> Converter::ConvertToCalotte(std::vector<Vertex2D>& vertices2D)
 {

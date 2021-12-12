@@ -19,7 +19,7 @@ public:
     void ReleaseResources();
     void Render();
     void Save();
-    void setVertices(std::vector<Vertex3D> vertices) { vertices3D.clear(); vertices3D = vertices; }
+    void SetVertices(std::vector<Vertex3D> vertices) { vertices3D.clear(); vertices3D = vertices; }
 private:
     void Sphere(Vertex3D& vertex, int pos);
     void InitGL();

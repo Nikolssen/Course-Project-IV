@@ -83,7 +83,7 @@ void FileManager::CreateBMPFile(LPTSTR pszFile, HBITMAP hBMP)
 }
 PBITMAPINFO  FileManager::CreateBitmapInfoStruct(HBITMAP hBmp)
 {
-	BITMAP bmp;
+	BITMAP bmp{};
 	PBITMAPINFO pbmi;
 	WORD    cClrBits;
  

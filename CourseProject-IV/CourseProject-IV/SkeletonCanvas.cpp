@@ -331,7 +331,7 @@ LRESULT CALLBACK SkeletonCanvas::WindowProc(HWND hWnd, UINT message, WPARAM wPar
             delegate->GetCalotteCanvas()->Save();
             break;
         case ID_OPTIONS_CONVERTTOCALOTTE:
-            Convert();
+            delegate->GetSkeletonCanvas()->Convert();
             delegate->GetCalotteCanvas()->Render();
             break;
         case IDM_EXIT:
@@ -372,6 +372,6 @@ void SkeletonCanvas::Convert() {
     auto delegate = Win32Application::Instance();
     auto converter = new Converter();
     auto calotteCanvas = delegate->GetCalotteCanvas();
-    calotteCanvas->setVertices(converter->ConvertToCalotte(delegate->GetSkeletonCanvas()->GetVertices()));
+    calotteCanvas->SetVertices(converter->ConvertToCalotte(delegate->GetSkeletonCanvas()->GetVertices()));
     delete converter;
 }

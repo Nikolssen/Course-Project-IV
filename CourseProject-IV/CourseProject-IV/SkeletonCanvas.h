@@ -27,9 +27,10 @@ public:
     
 private:
     static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-    static void Convert();
+    void Convert();
     bool IsWithinSafeZone(int x, int y);
     void CalculateVertexPosition(int x0, int y0, int x, int y, int value, int& x1, int& y1);
+
     HWND window;
     State state;
     std::vector<Vertex2D> vertices;
